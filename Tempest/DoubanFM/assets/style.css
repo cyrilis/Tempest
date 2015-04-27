@@ -1,0 +1,694 @@
+html{
+  background: transparent;
+  overflow: hidden;
+}
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Helvetica Neue Light", "HelveticaNeue-Light", "Helvetica Neue", Calibri, Helvetica, Arial, sans-serif;
+  -webkit-user-select: none;
+  background: transparent;
+}
+.hide {
+  display: none;
+}
+#player {
+  margin-top: 10px;
+  height: 10px;
+}
+/* UI component */
+.button {
+  display: inline-block;
+  width: auto !important;
+  padding: 5px 10px;
+  font-size: 1em;
+  line-height: 1;
+  color: #666;
+  border: 1px solid #f0f0f0;
+  background: #f0f0f0;
+  outline: 0;
+  -webkit-transition: background 0.3s ease-out, border-color 0.3s ease-out, transform 0.2s;
+  -moz-transition: background 0.3s ease-out, border-color 0.3s ease-out, transform 0.2s;
+  -ms-transition: background 0.3s ease-out, border-color 0.3s ease-out, transform 0.2s;
+  -o-transition: background 0.3s ease-out, border-color 0.3s ease-out, transform 0.2s;
+  transition: background 0.3s ease-out, border-color 0.3s ease-out, transform 0.2s;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  border-radius: 2px;
+}
+.button:hover {
+  background: #ddd;
+  border-color: #ddd;
+}
+.button:active {
+  -webkit-transform: scale(1.05);
+  -moz-transform: scale(1.05);
+  -ms-transform: scale(1.05);
+  -o-transform: scale(1.05);
+  transform: scale(1.05);
+}
+.button.primary {
+  background: #00a6e8;
+  color: #fff;
+}
+.button.primary:hover {
+  background: #05b8ff;
+}
+audio {
+  display: none;
+}
+progress::-webkit-progress-value {
+  background: #ddd;
+  height: 10px;
+  border-radius: 5px;
+}
+progress::-webkit-progress-bar {
+  background: transparent;
+  height: 10px;
+  border-radius: 5px;
+}
+progress {
+  -webkit-appearance: none;
+  border-radius: 5px;
+  overflow: hidden;
+  height: 10px;
+  width: 100%;
+  display: block;
+  margin: 0;
+  padding: 0;
+}
+progress.player-progress-played {
+  z-index: 999;
+  width: 99%;
+  padding: 0 0.5%;
+}
+progress.player-progress-buffer {
+  z-index: 998;
+  width: 99%;
+  padding: 0 0.5%;
+}
+progress.player-progress-buffer::-webkit-progress-bar {
+  background-color: #fff;
+}
+progress.player-progress-played::-webkit-progress-value {
+  background: #ff4e5f;
+  height: 10px;
+  border-radius: 5px 0 0 5px;
+}
+input[data-player="seek"] {
+  display: block;
+  width: 100%;
+  -webkit-appearance: none;
+  background: transparent;
+  border-radius: 5px;
+  height: 10px;
+  margin: 0;
+  outline: none;
+}
+input[data-player="volume"] {
+  position: absolute;
+  bottom: 40px;
+  right: 20px;
+  width: 30px;
+  -webkit-appearance: none;
+  background-color: #eee;
+  background-image: -moz-linear-gradient(#ff4e5f, #ff4e5f);
+  background-image: -webkit-linear-gradient(#ff4e5f, #ff4e5f);
+  background-image: linear-gradient(#ff4e5f, #ff4e5f);
+  background-size: 0 100%;
+  background-repeat: no-repeat;
+  border-radius: 5px;
+  height: 5px;
+  margin: 0;
+  outline: none;
+  -webkit-transform: rotate(-90deg);
+}
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  background-color: #ff4e5f;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 2px solid #fff;
+  cursor: pointer;
+  -webkit-transition: 0.3s ease-in-out;
+}
+input[type="range"]:not(.player-volume)::-webkit-slider-thumb:hover {
+  background-color: #fff;
+  border: 2px solid #ff4e5f;
+  -webkit-transform: scale(1.3);
+}
+input[type="range"]:not(.player-volume)::-webkit-slider-thumb:active {
+  transform: scale(1.5);
+}
+input.player-volume[type=range]::-webkit-slider-thumb {
+  border-radius: 50%;
+  border-width: 0;
+  width: 5px;
+  height: 5px;
+}
+input[data-player="captions"],
+.icon-captions-on,
+.icon-captions-on + svg,
+.sr-only,
+button[data-player="fullscreen"],
+button[data-player="restart"],
+button[data-player="rewind"],
+button[data-player="play"],
+button[data-player="pause"],
+button[data-player="fast-forward"],
+input[data-player="mute"] + label {
+  display: none;
+}
+@-webkit-keyframes rotation {
+  from {
+    -webkit-transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(359deg);
+  }
+}
+/* icon */
+.icon {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  fill: currentColor;
+}
+.wrapper {
+  position: relative;
+  width: 350px;
+  -webkit-transition: width 0.3s;
+}
+.wrapper.open {
+  width: 550px;
+}
+/* Main  */
+.main {
+  position: absolute;
+  left: 0;
+  overflow: hidden;
+  display: block;
+  width: 350px;
+  height: 450px;
+  background: #333;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+}
+/* Sidebar */
+.sidebar {
+  position: absolute;
+  right: 0;
+  top: 20px;
+  width: 200px;
+  padding-left: 10px;
+  height: 410px;
+  background: rgba(51,51,51,0.975);
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  z-index: -1;
+  -webkit-transition: all 0.3s;
+}
+.sidebar .loading {
+  position: absolute;
+  color: #fff;
+  font-size: 100px;
+  background: #333;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+}
+.sidebar .loading svg {
+  margin-top: 150px;
+  margin-left: 50px;
+  width: 100px;
+  height: 100px;
+  -webkit-animation: rotation 1s infinite linear;
+}
+.sidebar .user {
+  margin-top: 15px;
+  color: #fff;
+  text-align: center;
+  height: 185px;
+  overflow: auto;
+}
+.sidebar .user p {
+  margin: 5px 0 5px 0;
+}
+.sidebar .user .avatar {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto;
+  background-repeat: no-repeat;
+  background-position: 50%;
+  background-color: #444;
+  background-size: cover;
+  overflow: hidden;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+  cursor: pointer;
+}
+.sidebar .user .user-desc {
+  max-height: 60px;
+  overflow: auto;
+  font-size: 14px;
+  padding: 0 5px;
+  color: #ccc;
+  line-height: 1.3;
+}
+.sidebar .login-form {
+  margin-top: 30px;
+  margin-bottom: 30px;
+  padding: 10px;
+  color: #ddd;
+  font-size: 14px;
+}
+.sidebar .login-form label {
+  line-height: 15px;
+}
+.sidebar .login-form input {
+  color: #ccc;
+  padding: 5px 6px;
+  border: 1px solid #666;
+  background: #444;
+  margin-bottom: 5px;
+  width: 165px;
+  outline: 0;
+}
+.sidebar .channels {
+  height: 200px;
+  overflow: auto;
+  border-top: 1px solid #393939;
+  padding-top: 4px;
+  margin-top: 4px;
+  border-bottom: 1px solid #000;
+}
+.sidebar .channels ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 16px;
+}
+.sidebar .channels ul li {
+  cursor: pointer;
+  padding: 5px 10px;
+  height: 20px;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 180px;
+  color: #ccc;
+  text-overflow: ellipsis;
+  line-height: 20px;
+  -webkit-transition: all 0.3s;
+  border-top: 1px solid #434343;
+  border-bottom: 1px solid #1b1b1b;
+}
+.sidebar .channels ul li.active {
+  background: #242424;
+}
+.sidebar .channels ul li:hover {
+  color: #fff;
+  background: #252525;
+}
+.sidebar .channels ul li:last-child {
+  border-bottom: 0;
+}
+.menu,
+.info,
+.close {
+  display: block;
+  position: absolute;
+  top: 5px;
+  color: #eee;
+  font-size: 32px;
+  cursor: pointer;
+  z-index: 900;
+  -webkit-app-region: no-drag;
+}
+.close {
+  left: 10px;
+  top: 10px;
+  font-size: 16px;
+  width: 32px;
+  height: 32px;
+  color: #333;
+  opacity: 1;
+  -webkit-transition: all 0.3s;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+}
+.close svg {
+  display: block;
+  margin: 8px auto;
+}
+.close:hover {
+  -webkit-transform: scale(1.3);
+  color: #fff;
+  background: #000;
+}
+.close:active {
+  -webkit-transform: scale(0.5);
+}
+.menu,
+.info {
+  top: 20px;
+  right: 20px;
+  color: #eee;
+  width: 32px;
+  height: 32px;
+  opacity: 0;
+  -webkit-transition: all 0.3s;
+}
+.album:hover .menu,
+.album:hover .info {
+  opacity: 1;
+}
+.menu:hover,
+.info:hover {
+  color: #fff;
+}
+.info {
+  left: initial;
+  right: 20px;
+  top: initial;
+  bottom: 20px;
+}
+.album {
+  overflow: hidden;
+  width: 100%;
+  height: 350px;
+  position: relative;
+  -webkit-border-radius: 0 0 5px 5px;
+  -moz-border-radius: 0 0 5px 5px;
+  border-radius: 0 0 5px 5px;
+}
+.album:after {
+  display: block;
+  content: "";
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: rgba(0,0,0,0.5);
+  opacity: 0;
+  -webkit-transition: opacity 0.3s;
+  border-radius: 5px;
+}
+.album:hover:after {
+  opacity: 0;
+}
+.album .loading {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  background: rgba(0,0,0,0.3);
+  opacity: 0;
+  z-index: 800;
+  font-size: 100px;
+  text-align: center;
+  -webkit-transition: opacity 0.3s;
+}
+.album .loading svg {
+  color: #fff;
+  display: block;
+  margin: 125px auto;
+  -webkit-animation: rotation 1s infinite linear;
+}
+.album .loading.show {
+  opacity: 1;
+}
+.information {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 40%;
+  color: #fff;
+  font-size: 18px;
+  line-height: 25px;
+  box-sizing: border-box;
+  padding: 0 18px;
+  text-align: right;
+  left: 0;
+  opacity: 0.8;
+  -webkit-transition: all 0.3s;
+  background: linear-gradient(to bottom, rgba(72,76,97,0) 0%, #484c61 80%);
+  -webkit-transform: translate3d(0, 40%, 0);
+  pointer-events: none;
+  -webkit-border-radius: 0 0 5px 5px;
+  -moz-border-radius: 0 0 5px 5px;
+  border-radius: 0 0 5px 5px;
+}
+.information div {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.information .artist {
+  font-size: 14px;
+  color: #ccc;
+}
+.information .album-title {
+  font-size: 14px;
+  color: #ccc;
+}
+.album:hover .information {
+  opacity: 1;
+  -webkit-transform: translate3d(0, 0, 0);
+}
+.album img {
+  display: block;
+  width: 100%;
+  opacity: 0;
+  -webkit-transition: opacity 0.3s;
+}
+.album img.show {
+  opacity: 1;
+}
+.player-controls * {
+  -webkit-app-region: no-drag;
+}
+.player-controls .player-progress {
+  position: relative;
+  height: 10px;
+  width: 320px;
+  margin: 0 15px;
+  margin-top: 10px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+.player-controls .player-time {
+  position: absolute;
+  top: 300px;
+  left: 20px;
+  color: #fff;
+  font-size: 16px;
+  font-family: "Avenir Next";
+}
+.player-progress input {
+  position: absolute;
+  top: 0;
+  z-index: 1000;
+}
+.player-progress progress {
+  position: absolute;
+  top: 0;
+}
+.controls {
+  font-size: 36px;
+  color: #fff;
+  text-align: center;
+  margin-top: 15px;
+}
+.controls > div.icon {
+/* Disable Drag */
+  -webkit-app-region: no-drag;
+  display: inline-block;
+  color: #ddd;
+  margin: 0 5px;
+  position: relative;
+  vertical-align: middle;
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  -ms-transition: all 0.3s;
+  -o-transition: all 0.3s;
+  transition: all 0.3s;
+}
+.controls > div.icon.play {
+  display: inline-block;
+  font-size: 42px;
+  line-height: 36px;
+}
+.controls > div.icon.play .icon-play {
+  display: block;
+}
+.controls > div.icon.play .icon-pause {
+  display: none;
+}
+.controls > div.icon.heart {
+  position: relative;
+}
+.controls > div.icon.heart svg {
+  display: block;
+  top: 0;
+  position: absolute;
+  left: 0;
+  -webkit-transition: opacity 0.3s;
+}
+.controls > div.icon.heart:hover {
+  color: #ff4e5f;
+}
+.player.like + .controls > div.icon.heart {
+  color: #ff4e5f;
+}
+.player.like + .controls > div.icon.heart .icon-heart-broken {
+  display: block;
+}
+.player.like + .controls > div.icon.heart:hover .icon-heart {
+  opacity: 0;
+}
+.controls > div.icon.unheart {
+  display: none;
+}
+.controls > div.icon:hover {
+  color: #fff;
+}
+.controls > div.icon:after {
+  pointer-events: none;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  content: '';
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  top: -2px;
+  left: -2px;
+  padding: 2px;
+  z-index: 0;
+  background: #fff;
+  -webkit-transform: scale(0);
+  -moz-transform: scale(0);
+  -ms-transform: scale(0);
+  transform: scale(0);
+}
+.controls > div.icon.animated:after {
+  -webkit-animation: ripple 0.2s forwards, fadeout 0.3s forwards;
+  -o-animation: ripple 0.2s forwards, fadeout 0.3s forwards;
+  animation: ripple 0.2s forwards, fadeout 0.3s forwards;
+}
+.player.playing + .controls .play .icon-play {
+  display: none;
+}
+.player.playing + .controls .play .icon-pause {
+  display: block;
+}
+@-moz-keyframes rotation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(359deg);
+  }
+}
+@-webkit-keyframes rotation {
+  from {
+    -webkit-transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(359deg);
+  }
+}
+@-o-keyframes rotation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(359deg);
+  }
+}
+@keyframes rotation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(359deg);
+  }
+}
+@-moz-keyframes ripple {
+  from {
+    transform: scale(0);
+  }
+  to {
+    transform: scale(2);
+  }
+}
+@-webkit-keyframes ripple {
+  from {
+    -webkit-transform: scale(0);
+  }
+  to {
+    -webkit-transform: scale(2);
+  }
+}
+@-o-keyframes ripple {
+  from {
+    transform: scale(0);
+  }
+  to {
+    transform: scale(2);
+  }
+}
+@keyframes ripple {
+  from {
+    transform: scale(0);
+  }
+  to {
+    transform: scale(2);
+  }
+}
+@-moz-keyframes fadeout {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+@-webkit-keyframes fadeout {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+@-o-keyframes fadeout {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+@keyframes fadeout {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
