@@ -192,22 +192,16 @@ input[data-player="mute"] + label {
   width: 350px;
   height: 450px;
   background: #333;
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  border-radius: 5px;
 }
 /* Sidebar */
 .sidebar {
   position: absolute;
   right: 0;
-  top: 20px;
+  top: 0;
   width: 200px;
   padding-left: 10px;
   height: 410px;
   background: rgba(51,51,51,0.975);
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  border-radius: 5px;
   z-index: -1;
   -webkit-transition: all 0.3s;
 }
@@ -285,10 +279,8 @@ input[data-player="mute"] + label {
 .sidebar .channels {
   height: 200px;
   overflow: auto;
-  border-top: 1px solid #393939;
-  padding-top: 4px;
+  border-top: 1px solid #1b1b1b;
   margin-top: 4px;
-  border-bottom: 1px solid #000;
 }
 .sidebar .channels ul {
   margin: 0;
@@ -386,9 +378,9 @@ input[data-player="mute"] + label {
   width: 100%;
   height: 350px;
   position: relative;
-  -webkit-border-radius: 0 0 5px 5px;
-  -moz-border-radius: 0 0 5px 5px;
-  border-radius: 0 0 5px 5px;
+/*  -webkit-border-radius: 0 0 5px 5px;*/
+/*  -moz-border-radius: 0 0 5px 5px;*/
+/*  border-radius: 0 0 5px 5px;*/
 }
 .album:after {
   display: block;
@@ -402,7 +394,7 @@ input[data-player="mute"] + label {
   background: rgba(0,0,0,0.5);
   opacity: 0;
   -webkit-transition: opacity 0.3s;
-  border-radius: 5px;
+/*  border-radius: 5px;*/
 }
 .album:hover:after {
   opacity: 0;
@@ -446,9 +438,9 @@ input[data-player="mute"] + label {
   background: linear-gradient(to bottom, rgba(72,76,97,0) 0%, #484c61 80%);
   -webkit-transform: translate3d(0, 40%, 0);
   pointer-events: none;
-  -webkit-border-radius: 0 0 5px 5px;
-  -moz-border-radius: 0 0 5px 5px;
-  border-radius: 0 0 5px 5px;
+/*  -webkit-border-radius: 0 0 5px 5px;*/
+/*  -moz-border-radius: 0 0 5px 5px;*/
+/*  border-radius: 0 0 5px 5px;*/
 }
 .information div {
   overflow: hidden;

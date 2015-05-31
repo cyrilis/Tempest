@@ -11,14 +11,20 @@ import Cocoa
 
 class TPWindow: NSWindow {
 
-    var initialLocation:NSPoint
 
+    var cannotDrag:Bool = false
+    var initialLocation:NSPoint
     override var canBecomeKeyWindow :Bool {return true}
     override var canBecomeMainWindow :Bool {return true}
+    var childWebView:TPWebView?
+    var parentWebView:TPWebView?
     
     override init(contentRect: NSRect, styleMask aStyle: Int, backing bufferingType: NSBackingStoreType, defer flag: Bool) {
         self.initialLocation = NSPoint(x: 0, y: 0)
         super.init(contentRect: contentRect, styleMask: aStyle, backing: bufferingType, defer: flag)
+        self.opaque = false
+        self.movableByWindowBackground = true
+        self.hasShadow = true
     }
 
     required init?(coder: NSCoder) {
@@ -26,15 +32,24 @@ class TPWindow: NSWindow {
     }
     
     override func sendEvent(theEvent: NSEvent) {
-        if theEvent.type == NSEventType.LeftMouseDown{
+        if self.cannotDrag {
+            println("Inner Dragging......")
+        } else if theEvent.type == NSEventType.LeftMouseDown{
             self.mouseDown(theEvent)
         } else if theEvent.type == NSEventType.LeftMouseDragged {
             self.mouseDragged(theEvent)
+        } else if theEvent.type == NSEventType.LeftMouseUp {
+            self.mouseUp(theEvent)
         }
         super.sendEvent(theEvent)
     }
     override func mouseDown(theEvent: NSEvent) {
         self.initialLocation = theEvent.locationInWindow as NSPoint
+    }
+    
+    override func mouseUp(theEvent: NSEvent) {
+        // println("ReRender Window Shadow. 👌")
+        self.invalidateShadow()
     }
     
     override func mouseDragged(theEvent: NSEvent) {

@@ -16,22 +16,35 @@ var player : TPPlayer!
 class AppDelegate: NSObject, NSApplicationDelegate {
 
     func initPlayer() -> TPPlayer {
-        return TPPlayer(width: 350, height: 450)
+        return TPPlayer()
+    }
+    
+    func startServer(){
+        var proxy = TPProxy()
     }
 
     func applicationDidFinishLaunching(aNotification: NSNotification) {
         // Insert code here to initialize your application
-        player = initPlayer();
         
+        let thread = NSThread(target:self, selector: "startServer", object: nil)
+        thread.start()
+        player = initPlayer();
+        player.window.makeKeyAndOrderFront(self)
+
         mediaTap = SPMediaKeyTap(delegate: self)
         mediaTap.startWatchingMediaKeys()
-        
-        // registerGlobalShortcut()
     }
 
     func applicationWillTerminate(aNotification: NSNotification) {
         // Insert code here to tear down your application
-        mediaTap.stopWatchingMediaKeys()
+        if mediaTap != nil {
+            mediaTap.stopWatchingMediaKeys()
+        }
+    }
+    
+    // Terminate Application When Player is closed.
+    func applicationShouldTerminateAfterLastWindowClosed(theApplication: NSApplication) -> Bool{
+        return true;
     }
     
     override func mediaKeyTap(keyTap: SPMediaKeyTap!, receivedMediaKeyEvent event: NSEvent!) {

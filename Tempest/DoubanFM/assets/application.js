@@ -5,10 +5,6 @@
 
   plyr.setup();
 
-  __ = function(val) {
-    return "\n--------------------------" + val + "----------------------------";
-  };
-
   window.player = document.querySelectorAll(".player")[0].plyr;
 
   $(".player-volume").on("input", function(e) {
@@ -21,13 +17,15 @@
     });
   }).trigger('input');
 
-  API_HOST = "http://localhost:4000";
+  API_HOST = "http://localhost:9900";
 
   CHANNELS_URL = API_HOST + "/j/app/radio/channels";
 
   AUTH_URL = API_HOST + "/j/app/login";
 
   PLAYLIST_URL = API_HOST + "/j/app/radio/people";
+
+  var USER_API_URL = API_HOST + "/v2/user/";
 
   app_name = "radio_desktop_win";
 
@@ -60,11 +58,6 @@
       });
       $("img").trigger('load');
       this.initSidebar();
-      $("button.button.login").click((function(_this) {
-        return function() {
-          return _this.login();
-        };
-      })(this));
       $("button.button.logout").click((function(_this) {
         return function() {
           return _this.logout();
@@ -79,7 +72,9 @@
       // this.registerShortCut();
     }
 
+
     Application.prototype.initSidebar = function() {
+      window.webkit.messageHandlers.panelDo.postMessage("initSidebar();")
       var self;
       self = this;
       console.log("Fetching channels");
@@ -89,12 +84,14 @@
         channels = result.channels;
         if (self.user_id && self.token && self.expire) {
           self.getUserInfo().done(function() {
-            $(".channels").removeClass("hide");
-            return $(".sidebar .loading").addClass("hide");
+//            $(".channels").removeClass("hide");
+            window.webkit.messageHandlers.panelDo.postMessage("$(\".channels\").removeClass(\"hide\");$(\".sidebar .loading\").addClass(\"hide\");")
+//            return $(".sidebar .loading").addClass("hide");
           });
         } else {
-          $(".channels").removeClass("hide");
-          $(".sidebar .loading").addClass("hide");
+          window.webkit.messageHandlers.panelDo.postMessage("$(\".channels\").removeClass(\"hide\");$(\".sidebar .loading\").addClass(\"hide\");")
+//          $(".channels").removeClass("hide");
+//          $(".sidebar .loading").addClass("hide");
         }
         $channels = $(".channels ul");
         channels.forEach(function(channel) {
@@ -112,17 +109,19 @@
     Application.prototype.getUserInfo = function() {
       var self;
       self = this;
-      $(".sidebar .login-form").addClass("hide");
-      $(".sidebar .loading").removeClass("hide");
+      window.webkit.messageHandlers.panelDo.postMessage("$(\".sidebar .login-form\").addClass(\"hide\");$(\".sidebar .loading\").removeClass(\"hide\");");
+//      $(".sidebar .login-form").addClass("hide");
+//      $(".sidebar .loading").removeClass("hide");
       this.user_id = localStorage.getItem("user_id");
       console.log("Getting User Data");
-      return $.get("https://api.douban.com/v2/user/" + this.user_id + "?apikey=0776da5f62da51f816648f1e288ef5e8").done(function(result) {
+      return $.get(USER_API_URL + this.user_id + "?apikey=0776da5f62da51f816648f1e288ef5e8").done(function(result) {
         console.log("Got user info.");
-        $(".user-name").text(result.name);
-        $(".user-desc").text(result.signature || result.desc);
-        $(".avatar").css("background-image", "url(" + result.large_avatar + ")");
-        $(".sidebar .loading").addClass("hide");
-        return $(".sidebar .user").removeClass("hide");
+        window.webkit.messageHandlers.panelDo.postMessage("$(\".user-name\").text(\""+result.name.split('"').join('\\"')+"\");$(\".user-desc\").text(\""+(result.signature || result.desc).split('"').join('\\"')+ "\");$(\".avatar\").css(\"background-image\", \"url(\'" + result.large_avatar.split('"').join('\\"') + "\')\");$(\".sidebar .loading\").addClass(\"hide\");$(\".sidebar .user\").removeClass(\"hide\");");
+//        $(".user-name").text(result.name);
+//        $(".user-desc").text(result.signature || result.desc);
+//        $(".avatar").css("background-image", "url(" + result.large_avatar + ")");
+//        $(".sidebar .loading").addClass("hide");
+//        return $(".sidebar .user").removeClass("hide");
       }).fail(function(err) {
         return console.log(JSON.stringify(err));
       });
@@ -173,6 +172,26 @@
       return defer.promise;
     };
 
+    Application.prototype._login = function(){
+        window.webkit.messageHandlers.panelDo.postMessage("login");
+    }
+
+    window.setUserInfo = function(result){
+        fm.user_id = result.user_id;
+        fm.token = result.token;
+        fm.expire = result.expire;
+        fm.email = result.email;
+        fm.user_name = result.user_name;
+        self = fm;
+        localStorage.setItem("user_id", self.user_id);
+        localStorage.setItem("token", self.token);
+        localStorage.setItem("expire", self.expire);
+        localStorage.setItem("email", self.email);
+        localStorage.setItem("user_name", self.user_name);
+        console.log("Got user....");
+        fm.getUserInfo();
+    }
+
     Application.prototype.logout = function() {
       this.user_id = null;
       this.token = null;
@@ -184,10 +203,15 @@
       localStorage.removeItem("expire");
       localStorage.removeItem("email");
       localStorage.removeItem("user_name");
-      $(".login-form").removeClass("hide");
-      $(".user").addClass('hide');
-      return $(".sidebar .loading").addClass("hide");
+
+      window.webkit.messageHandlers.panelDo.postMessage("$(\".sidebar .loading\").addClass(\"hide\");$(\".login-form\").removeClass(\"hide\");$(\".user\").addClass(\"hide\");")
+
+      // $(".login-form").removeClass("hide");
+      // $(".user").addClass('hide');
+      // return $(".sidebar .loading").addClass("hide");
     };
+
+
 
     Application.prototype.fetchSong = function(type, shouldPlay, sid) {
       var channel, data, defer, self;
@@ -221,7 +245,7 @@
           data.sid = sid;
         }
         $.get(PLAYLIST_URL, data).done(function(result) {
-          console.log("Fetched....");
+          console.log(result);
           if (type === 'e') {
             return false;
           }
@@ -385,9 +409,9 @@
         return self.heart();
       });
       if (ret1 && ret2 && ret3) {
-        return console.log(__("Register Success! "));
+        return console.log("Register Success! ");
       } else {
-        console.log(__("Register Failed....."));
+        console.log("Register Failed.....");
         return console.log(ret1, ret1, ret3);
       }
     };
@@ -400,35 +424,25 @@
 
   fm.next('n');
 
+  // open album openLink()
   $(".album .info").click(function() {
     console.log("OPen LInk");
     return fm.openLink();
   });
 
+  // Call webkit messageHandler Close
   $(".album .close").click(function() {
      console.log("Close Clicked!!!")
      window.webkit.messageHandlers.closeApplication.postMessage("WTF");
   });
 
-  $(".album .menu").click(function() {
-//    var BrowserWindow, expand, mainWindow, remote, width;
-//    $(".wrapper").toggleClass("open");
-//    remote = require('remote');
-//    expand = $(".wrapper").hasClass("open");
-//    width = expand ? 650 : 450;
-//    BrowserWindow = remote.require('browser-window');
-//    mainWindow = BrowserWindow.getFocusedWindow();
-//    if (expand) {
-//      if (window._delay) {
-//        window.clearTimeout(window._delay);
-//      }
-//      return mainWindow.setSize(width, 550);
-//    } else {
-//      return window._delay = window.setTimeout(function() {
-//        return mainWindow.setSize(width, 550);
-//      }, 300);
-//    }
-  });
+  // Call webkit messageHandler toggle draggable window.
+  $(".player-progress, .player-volume").on("mousedown", function(){
+     window.webkit.messageHandlers.toggleDrag.postMessage("true");
+  })
+  $(".player-progress, .player-volume").on("mouseup", function(){
+     window.webkit.messageHandlers.toggleDrag.postMessage("false");
+  })
 
   $(".controls .icon.play").click(function() {
     return fm.playOrPause();
@@ -445,5 +459,26 @@
   $(".controls .icon.trash").click(function() {
     return fm.block();
   });
+ 
+  $(".album .menu").click(function(){
+      window.webkit.messageHandlers.togglePanel.postMessage("true")
+  })
+
+  window.afterGetChanel = function(){
+    self = fm
+    if (self.user_id && self.token && self.expire) {
+    self.getUserInfo().done(function() {
+      window.webkit.messageHandlers.panelDo.postMessage("$(\".channels\").removeClass(\"hide\");$(\".sidebar .loading\").addClass(\"hide\");")
+      });
+    } else {
+      window.webkit.messageHandlers.panelDo.postMessage("$(\".channels\").removeClass(\"hide\");$(\".sidebar .loading\").addClass(\"hide\");")
+    }
+  }
+ window.logout = function(){
+    fm.logout();
+ }
+ window.switchChannel = function(id){
+    fm.switchChannel(id);
+ }
  
  }).call(this);
