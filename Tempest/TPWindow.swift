@@ -19,9 +19,9 @@ class TPWindow: NSWindow {
     var childWebView:TPWebView?
     var parentWebView:TPWebView?
     
-    override init(contentRect: NSRect, styleMask aStyle: Int, backing bufferingType: NSBackingStoreType, defer flag: Bool) {
+    override init(contentRect: NSRect, styleMask aStyle: Int, backing bufferingType: NSBackingStoreType, `defer` flag: Bool) {
         self.initialLocation = NSPoint(x: 0, y: 0)
-        super.init(contentRect: contentRect, styleMask: aStyle, backing: bufferingType, defer: flag)
+        super.init(contentRect: contentRect, styleMask: aStyle, backing: bufferingType, `defer`: flag)
         self.opaque = false
         self.movableByWindowBackground = true
         self.hasShadow = true
@@ -33,7 +33,7 @@ class TPWindow: NSWindow {
     
     override func sendEvent(theEvent: NSEvent) {
         if self.cannotDrag {
-            println("Inner Dragging......")
+            Swift.print("Inner Dragging......")
         } else if theEvent.type == NSEventType.LeftMouseDown{
             self.mouseDown(theEvent)
         } else if theEvent.type == NSEventType.LeftMouseDragged {
@@ -55,8 +55,8 @@ class TPWindow: NSWindow {
     override func mouseDragged(theEvent: NSEvent) {
         var currentLocation:NSPoint
         var newOrigin:NSPoint = NSPoint(x: 0, y: 0)
-        var screenFrame:NSRect = NSScreen.mainScreen()!.frame
-        var windowFrame:NSRect = self.frame
+        let screenFrame:NSRect = NSScreen.mainScreen()!.frame
+        let windowFrame:NSRect = self.frame
         currentLocation = NSEvent.mouseLocation()
         newOrigin.x = currentLocation.x - self.initialLocation.x
         newOrigin.y = currentLocation.y - self.initialLocation.y

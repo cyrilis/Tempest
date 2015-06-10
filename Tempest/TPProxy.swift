@@ -21,14 +21,14 @@ class TPProxy:NSObject {
     }
     func start (port: NSInteger = 9900){
         
-        server.addPostRequestHandler(Middleware.requestLogger(println))
+        server.addPostRequestHandler(Middleware.requestLogger(Swift.print))
         
         server.get("/") {
             request, response, callback in
             self.HTTPGet("http://www.cyrilis.com") {
                 (data: String, error: String?) -> Void in
                 if error != nil {
-                    println(error)
+                    print(error)
                     response.bodyString = error
                     callback(.Send(request, response))
                 } else {
@@ -49,7 +49,7 @@ class TPProxy:NSObject {
             self.HTTPGet(urlString as String){
                 (data: String, error: String?) -> Void in
                 if error != nil {
-                    println(error)
+                    print(error)
                     response.bodyString = error
                     callback(.Send(request, response))
                 } else {
@@ -72,7 +72,7 @@ class TPProxy:NSObject {
             self.HTTPGet(urlString as String){
                 (data: String, error: String?) -> Void in
                 if error != nil {
-                    println(error)
+                    print(error)
                     response.bodyString = error
                     callback(.Send(request, response))
                 } else {
@@ -94,7 +94,7 @@ class TPProxy:NSObject {
             self.HTTPGet(urlString as String){
                 (data: String, error: String?) -> Void in
                 if error != nil {
-                    println(error)
+                    print(error)
                     response.bodyString = error
                     callback(.Send(request, response))
                 } else {
@@ -109,16 +109,16 @@ class TPProxy:NSObject {
         
         server.get("/j/app/login"){
             request, response, callback in
-            var urlString:NSString = "\(self.domain)\(request.path)"
+            let urlString:NSString = "\(self.domain)\(request.path)"
             NSLog(urlString as String)
-            var email:String = request.arguments["email"]!
-            var password:String = request.arguments["password"]!
-            var app_name:String = "radio_desktop_win"
-            var string = "version=100&app_name=\(app_name)&email=\(email)&password=\(password)" as NSString
+            let email:String = request.arguments["email"]!
+            let password:String = request.arguments["password"]!
+            let app_name:String = "radio_desktop_win"
+            let string = "version=100&app_name=\(app_name)&email=\(email)&password=\(password)" as NSString
             self.HTTPPost(urlString as String, string: string as String) {
                 (data: String, error: String?) -> Void in
                 if error != nil {
-                    println(error)
+                    print(error)
                     response.bodyString = error
                     callback(.Send(request, response))
                 } else {
@@ -134,24 +134,13 @@ class TPProxy:NSObject {
             result in
             switch result {
             case .Success:
-                println("Up and running")
+                print("Up and running")
             case .Error(let e):
-                println("Server start failed \(e)")
+                print("Server start failed \(e)")
             }
         }
     }
-    
-    func JSONStringify(value: AnyObject, prettyPrinted: Bool = false) -> String {
-        var options = prettyPrinted ? NSJSONWritingOptions.PrettyPrinted : nil
-        if NSJSONSerialization.isValidJSONObject(value) {
-            if let data = NSJSONSerialization.dataWithJSONObject(value, options: options, error: nil) {
-                if let string = NSString(data: data, encoding: NSUTF8StringEncoding) {
-                    return string as String
-                }
-            }
-        }
-        return ""
-    }
+
     
     func HTTPsendRequest(request: NSMutableURLRequest,
         callback: (String, String?) -> Void) {
@@ -160,28 +149,27 @@ class TPProxy:NSObject {
                 completionHandler: {
                     data, response, error in
                     if error != nil {
-                        println(error)
-                        callback("", error.localizedDescription)
+                        print(error)
+                        callback("", error!.localizedDescription)
                     }
-                    callback( NSString(data: data, encoding: NSUTF8StringEncoding)! as String, nil)
+                    callback( NSString(data: data!, encoding: NSUTF8StringEncoding)! as String, nil)
             })
 
-            task.resume()
+            task!.resume()
     }
     
     func HTTPGet(url: String, callback: (String, String?) -> Void) {
-        var request = NSMutableURLRequest(URL: NSURL(string: url)!)
+        let request = NSMutableURLRequest(URL: NSURL(string: url)!)
         HTTPsendRequest(request, callback: callback)
     }
     
     func HTTPPost(url: String,
         string: String,
         callback: (String, String?) -> Void) {
-            var request = NSMutableURLRequest(URL: NSURL(string: url)!)
+            let request = NSMutableURLRequest(URL: NSURL(string: url)!)
             request.HTTPMethod = "POST"
             request.addValue("application/x-www-form-urlencoded",forHTTPHeaderField: "Content-Type")
             request.addValue("application/json", forHTTPHeaderField: "Accept")
-            var err: NSError?
             request.HTTPBody = string.dataUsingEncoding(NSUTF8StringEncoding)
             HTTPsendRequest(request, callback: callback)
     }

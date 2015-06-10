@@ -24,7 +24,7 @@ class TPPlayer: TPWebView {
     }
     
     override func afterInit() {
-        var panel = TPPanel()
+        let panel = TPPanel()
         self.window.childWebView = panel
         panel.window.parentWebView = self
         self.window.addChildWindow(panel.window, ordered: NSWindowOrderingMode.Below)
@@ -35,8 +35,8 @@ class TPPlayer: TPWebView {
     override func resetFrame(frameRect: NSRect) -> NSRect {
         self.width = 350
         self.height = 450
-        var windowRect: NSRect = (NSScreen.mainScreen()!).frame
-        var newFrameRect:NSRect = NSMakeRect(
+        let windowRect: NSRect = (NSScreen.mainScreen()!).frame
+        let newFrameRect:NSRect = NSMakeRect(
             windowRect.origin.x + (NSWidth(windowRect) - width)/2,
             windowRect.origin.y + (NSHeight(windowRect) - height)/2,
             self.width, self.height
@@ -45,14 +45,14 @@ class TPPlayer: TPWebView {
     }
     
     override func userContentController(userContentController: WKUserContentController,didReceiveScriptMessage message: WKScriptMessage){
-        println(message.name)
+        print(message.name)
         if(message.name == "closeApplication") {
             self.window.close()
         } else if(message.name == "openLink") {
             if let checkURL = NSURL(string: message.body as! String) {
-                if NSWorkspace.sharedWorkspace().openURL(checkURL) {println("url successfully opened")}
+                if NSWorkspace.sharedWorkspace().openURL(checkURL) {print("url successfully opened")}
             } else {
-                println("invalid url")
+                print("invalid url")
             }
         } else if (message.name == "toggleDrag"){
             if (message.body as! String == "true") {
@@ -65,8 +65,8 @@ class TPPlayer: TPWebView {
                 panel.run(message.body as! String)
             }
         } else if (message.name == "togglePanel"){
-            var playerRect = self.window.frame
-            var panelRect = self.window.childWebView?.window.frame
+            let playerRect = self.window.frame
+            let panelRect = self.window.childWebView?.window.frame
             var frameRect:NSRect
             if panelRect!.origin.x > (playerRect.origin.x + 180) {
                 frameRect = NSMakeRect(playerRect.origin.x + 140, playerRect.origin.y + 20, 210, 410)

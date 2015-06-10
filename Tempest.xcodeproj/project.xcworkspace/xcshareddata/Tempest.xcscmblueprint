@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "5987EF970E3CB7822B77603D89343B5547CA9A40",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "5987EF970E3CB7822B77603D89343B5547CA9A40" : 0,
+    "9E3FAE98F1A3E6A168C5AF083F7289DE16B258C9" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "5FF119A3-A0B5-444F-B380-7DEDC21EF3A9",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "5987EF970E3CB7822B77603D89343B5547CA9A40" : "Tempest\/",
+    "9E3FAE98F1A3E6A168C5AF083F7289DE16B258C9" : "Tempest\/Tempest\/DoubanFM\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "Tempest",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 203,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "Tempest.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:cyrilis\/Tempest.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "5987EF970E3CB7822B77603D89343B5547CA9A40"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:cyrilis\/Douban-FM-Express.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "9E3FAE98F1A3E6A168C5AF083F7289DE16B258C9"
+    }
+  ]
+}

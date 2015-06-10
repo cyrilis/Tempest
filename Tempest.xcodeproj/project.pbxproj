@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F124242A1B284A6900CF4F54 /* Taylor.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F12424251B2849B700CF4F54 /* Taylor.framework */; };
+		F124242B1B284A6900CF4F54 /* Taylor.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F12424251B2849B700CF4F54 /* Taylor.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		F146D99E1AE8DA9B00FE861F /* TPWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F146D99D1AE8DA9B00FE861F /* TPWebView.swift */; };
 		F146D9A31AEA48C300FE861F /* TPApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = F146D9A21AEA48C300FE861F /* TPApplication.swift */; };
 		F146D9AA1AEE8A0B00FE861F /* SPMediaKeyTap.m in Sources */ = {isa = PBXBuildFile; fileRef = F146D9A91AEE8A0B00FE861F /* SPMediaKeyTap.m */; };
@@ -18,9 +20,6 @@
 		F1A137B31AE2ADB8004E26B1 /* DoubanFM in Resources */ = {isa = PBXBuildFile; fileRef = F1A137B21AE2ADB8004E26B1 /* DoubanFM */; };
 		F1A137B51AE3A087004E26B1 /* TPWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1A137B41AE3A087004E26B1 /* TPWindow.swift */; };
 		F1A8A4961B1949B000FDB3E8 /* TPProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1A8A4951B1949B000FDB3E8 /* TPProxy.swift */; };
-		F1A8A4981B19771300FDB3E8 /* Taylor.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1A8A4971B19771300FDB3E8 /* Taylor.framework */; };
-		F1A8A4991B19774400FDB3E8 /* Taylor.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1A8A4971B19771300FDB3E8 /* Taylor.framework */; };
-		F1A8A49A1B19774400FDB3E8 /* Taylor.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F1A8A4971B19771300FDB3E8 /* Taylor.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		F1A8A49D1B1A28DB00FDB3E8 /* TPPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1A8A49C1B1A28DB00FDB3E8 /* TPPanel.swift */; };
 		F1A8A49F1B1A38C300FDB3E8 /* TPPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1A8A49E1B1A38C300FDB3E8 /* TPPlayer.swift */; };
 		F1A8A4A01B1ACE8300FDB3E8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F1A1367A1AE2A542004E26B1 /* Main.storyboard */; };
@@ -37,13 +36,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		F1A8A49B1B19774400FDB3E8 /* Embed Frameworks */ = {
+		F124242C1B284A6900CF4F54 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				F1A8A49A1B19774400FDB3E8 /* Taylor.framework in Embed Frameworks */,
+				F124242B1B284A6900CF4F54 /* Taylor.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -51,6 +50,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		F12424251B2849B700CF4F54 /* Taylor.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Taylor.framework; sourceTree = "<group>"; };
 		F146D99D1AE8DA9B00FE861F /* TPWebView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TPWebView.swift; sourceTree = "<group>"; };
 		F146D9A11AEA252700FE861F /* Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
 		F146D9A21AEA48C300FE861F /* TPApplication.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TPApplication.swift; sourceTree = "<group>"; };
@@ -71,7 +71,6 @@
 		F1A137B21AE2ADB8004E26B1 /* DoubanFM */ = {isa = PBXFileReference; lastKnownFileType = folder; path = DoubanFM; sourceTree = "<group>"; };
 		F1A137B41AE3A087004E26B1 /* TPWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TPWindow.swift; sourceTree = "<group>"; };
 		F1A8A4951B1949B000FDB3E8 /* TPProxy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TPProxy.swift; sourceTree = "<group>"; };
-		F1A8A4971B19771300FDB3E8 /* Taylor.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Taylor.framework; sourceTree = "<group>"; };
 		F1A8A49C1B1A28DB00FDB3E8 /* TPPanel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TPPanel.swift; sourceTree = "<group>"; };
 		F1A8A49E1B1A38C300FDB3E8 /* TPPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TPPlayer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -81,8 +80,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F1A8A4981B19771300FDB3E8 /* Taylor.framework in Frameworks */,
-				F1A8A4991B19774400FDB3E8 /* Taylor.framework in Frameworks */,
+				F124242A1B284A6900CF4F54 /* Taylor.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -99,7 +97,7 @@
 		C3DFA3305613B5BDEB5E6EB0 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				F1A8A4971B19771300FDB3E8 /* Taylor.framework */,
+				F12424251B2849B700CF4F54 /* Taylor.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -183,7 +181,7 @@
 				F1A1366B1AE2A542004E26B1 /* Sources */,
 				F1A1366C1AE2A542004E26B1 /* Frameworks */,
 				F1A1366D1AE2A542004E26B1 /* Resources */,
-				F1A8A49B1B19774400FDB3E8 /* Embed Frameworks */,
+				F124242C1B284A6900CF4F54 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -218,7 +216,8 @@
 		F1A136671AE2A542004E26B1 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0630;
+				LastSwiftUpdateCheck = 0700;
+				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = Cyrilis.com;
 				TargetAttributes = {
 					F1A1366E1AE2A542004E26B1 = {
@@ -338,6 +337,7 @@
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -413,6 +413,7 @@
 				);
 				INFOPLIST_FILE = Tempest/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.cyrilis.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Tempest/Tempest-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -431,6 +432,7 @@
 				);
 				INFOPLIST_FILE = Tempest/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.cyrilis.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Tempest/Tempest-Bridging-Header.h";
 			};
@@ -451,6 +453,7 @@
 				);
 				INFOPLIST_FILE = TempestTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.cyrilis.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Tempest.app/Contents/MacOS/Tempest";
 			};
@@ -467,6 +470,7 @@
 				);
 				INFOPLIST_FILE = TempestTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.cyrilis.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Tempest.app/Contents/MacOS/Tempest";
 			};

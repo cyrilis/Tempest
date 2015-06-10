@@ -20,7 +20,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     func startServer(){
-        var proxy = TPProxy()
+        _ = TPProxy()
     }
 
     func applicationDidFinishLaunching(aNotification: NSNotification) {
@@ -51,20 +51,20 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         let keyCode = (event.data1 & 0xFFFF0000) >> 16
         let keyFlags = event.data1 & 0x0000FFFF
         let keyPressed = ((keyFlags & 0xFF00) >> 8) == 0xA
-        let keyRepeat = keyFlags & 0x1
+        _ = keyFlags & 0x1
         
         if keyPressed {
             switch keyCode {
             case Int(NX_KEYTYPE_PLAY):
-                println("PLAY/PAUSE")
+                print("PLAY/PAUSE")
                 player.run("$(\".controls .icon.play\").click()")
                 return
             case Int(NX_KEYTYPE_FAST):
-                println("NEXT")
+                print("NEXT")
                 player.run("$(\".controls .icon.next\").click()")
                 return
             case Int(NX_KEYTYPE_REWIND):
-                println("PREV")
+                print("PREV")
                 player.run("$(\".controls .icon.heart\").click()")
                 return
             default:

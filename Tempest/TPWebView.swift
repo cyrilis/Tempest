@@ -18,15 +18,15 @@ class TPWebView: NSObject, WKScriptMessageHandler, WKNavigationDelegate{
     var cornerRadius:CGFloat = 5.0
 
     override init(){
-        var windowRect: NSRect = (NSScreen.mainScreen()!).frame
-        var frameRect:NSRect = NSMakeRect(
+        let windowRect: NSRect = (NSScreen.mainScreen()!).frame
+        let frameRect:NSRect = NSMakeRect(
             (NSWidth(windowRect) - self.width)/2,
             (NSHeight(windowRect) - self.height)/2,
             self.width, self.height
         )
         
-        var viewRect:NSRect = NSMakeRect(0,0,NSWidth(frameRect), NSHeight(frameRect));
-        self.window = TPWindow(contentRect: frameRect, styleMask: NSBorderlessWindowMask | NSClosableWindowMask | NSMiniaturizableWindowMask | NSTexturedBackgroundWindowMask, backing: NSBackingStoreType.Buffered, defer: false, screen: NSScreen.mainScreen())
+        let viewRect:NSRect = NSMakeRect(0,0,NSWidth(frameRect), NSHeight(frameRect));
+        self.window = TPWindow(contentRect: frameRect, styleMask: NSBorderlessWindowMask | NSClosableWindowMask | NSMiniaturizableWindowMask | NSTexturedBackgroundWindowMask, backing: NSBackingStoreType.Buffered, `defer`: false, screen: NSScreen.mainScreen())
         super.init()
         self.window.setFrame(self.resetFrame(frameRect), display: true)
         self.window.titleVisibility = NSWindowTitleVisibility.Hidden
@@ -43,10 +43,10 @@ class TPWebView: NSObject, WKScriptMessageHandler, WKNavigationDelegate{
     }
     
     func loadWebView(viewRect: NSRect){
-        var config = WKWebViewConfiguration()
-        var webPrefs = WKPreferences()
+        let config = WKWebViewConfiguration()
+        let webPrefs = WKPreferences()
         var contentController = WKUserContentController()
-        var userScript = WKUserScript(
+        let userScript = WKUserScript(
             source: "console.log(\"Hello From Nav\")", injectionTime: WKUserScriptInjectionTime.AtDocumentEnd, forMainFrameOnly: true)
         webPrefs.javaEnabled = false
         webPrefs.plugInsEnabled = false
@@ -58,7 +58,7 @@ class TPWebView: NSObject, WKScriptMessageHandler, WKNavigationDelegate{
         contentController = self.setupContentController(contentController)
         config.userContentController = contentController
         
-        var webView:WKWebView = WKWebView(frame: viewRect, configuration: config)
+        let webView:WKWebView = WKWebView(frame: viewRect, configuration: config)
         webView.wantsLayer = true
         webView.layer?.backgroundColor = NSColor.clearColor().CGColor
         webView.layer?.cornerRadius = cornerRadius
@@ -70,7 +70,7 @@ class TPWebView: NSObject, WKScriptMessageHandler, WKNavigationDelegate{
     }
     
     func loadRequest (webView:WKWebView){
-        var requestObj:NSURLRequest = NSURLRequest(URL:webUrl!)
+        let requestObj:NSURLRequest = NSURLRequest(URL:webUrl)
         webView.loadRequest(requestObj)
     }
     
@@ -80,7 +80,7 @@ class TPWebView: NSObject, WKScriptMessageHandler, WKNavigationDelegate{
     }
     
     func userContentController(userContentController: WKUserContentController, didReceiveScriptMessage message: WKScriptMessage) {
-        println(message.name)
+        print(message.name)
         if(message.name == "doSomeThing"){
             // Do Some Thing.
         }
@@ -90,42 +90,43 @@ class TPWebView: NSObject, WKScriptMessageHandler, WKNavigationDelegate{
     }
     
     func webView(webView: WKWebView, didFailNavigation navigation: WKNavigation!, withError error: NSError) {
-        println("Failed load webView WebContent")
-        println(error)
+        print("Failed load webView WebContent")
+        print(error)
     }
     
     func webView(webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: NSError) {
-        println("Did Fail Provisional Navigation")
-        println(error)
+        print("Did Fail Provisional Navigation")
+        print(error)
     }
     
     func webView(webView: WKWebView, didFinishNavigation navigation: WKNavigation!) {
-        println("webView Loaded!!!")
+        print("webView Loaded!!!")
         webView.evaluateJavaScript("console.log(\"WebKit Loaded And Called From Swift!\")", completionHandler: { (data, error) in
             if error != nil {
-                println(error)
+                print(error)
             }
             if data != nil{
-                println(data)
+                print(data)
             }
             
         })
     }
     
     func webView(webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
-        println("Start load WebKit Navigation")
+        print("Start load WebKit Navigation")
     }
     
     func webView(webView: WKWebView, decidePolicyForNavigationAction navigationAction: WKNavigationAction, decisionHandler: (WKNavigationActionPolicy) -> Void) {
         if navigationAction.navigationType.rawValue == 0 {
-            println("stop Navigation")
+            print("stop Navigation")
             decisionHandler(.Cancel)
             return
         }
         decisionHandler(.Allow)
     }
     func run(string:String){
-        window.contentView.evaluateJavaScript(string as String, completionHandler: {
+        let contentView = window.contentView as! WKWebView
+        contentView.evaluateJavaScript(string as String, completionHandler: {
             (data, error) in
             NSLog("runing js in Naive: %@ -----", string)
         })
