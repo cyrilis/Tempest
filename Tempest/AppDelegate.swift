@@ -25,10 +25,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     func applicationDidFinishLaunching(aNotification: NSNotification) {
         // Insert code here to initialize your application
-        
+        player = initPlayer();
         let thread = NSThread(target:self, selector: "startServer", object: nil)
         thread.start()
-        player = initPlayer();
+        
         player.window.makeKeyAndOrderFront(self)
 
         mediaTap = SPMediaKeyTap(delegate: self)

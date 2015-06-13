@@ -19,9 +19,14 @@ class TPProxy:NSObject {
         super.init()
         self.start()        
     }
+    
+    
+    
     func start (port: NSInteger = 9900){
         
-        server.addPostRequestHandler(Middleware.requestLogger(Swift.print))
+        
+        
+        server.addPostRequestHandler(Middleware.requestLogger(print))
         
         server.get("/") {
             request, response, callback in
@@ -29,7 +34,7 @@ class TPProxy:NSObject {
                 (data: String, error: String?) -> Void in
                 if error != nil {
                     print(error)
-                    response.bodyString = error
+                    response.bodyString = ""
                     callback(.Send(request, response))
                 } else {
                     response.bodyString  = data
@@ -50,7 +55,7 @@ class TPProxy:NSObject {
                 (data: String, error: String?) -> Void in
                 if error != nil {
                     print(error)
-                    response.bodyString = error
+                    response.bodyString = ""
                     callback(.Send(request, response))
                 } else {
                     response.bodyString = data
@@ -73,7 +78,7 @@ class TPProxy:NSObject {
                 (data: String, error: String?) -> Void in
                 if error != nil {
                     print(error)
-                    response.bodyString = error
+                    response.bodyString = ""
                     callback(.Send(request, response))
                 } else {
                     response.bodyString = data
@@ -95,7 +100,7 @@ class TPProxy:NSObject {
                 (data: String, error: String?) -> Void in
                 if error != nil {
                     print(error)
-                    response.bodyString = error
+                    response.bodyString = ""
                     callback(.Send(request, response))
                 } else {
                     response.bodyString = data
@@ -119,7 +124,7 @@ class TPProxy:NSObject {
                 (data: String, error: String?) -> Void in
                 if error != nil {
                     print(error)
-                    response.bodyString = error
+                    response.bodyString = ""
                     callback(.Send(request, response))
                 } else {
                     response.bodyString = data
