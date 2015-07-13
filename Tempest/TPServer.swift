@@ -19,7 +19,6 @@ class TPServer:NSObject {
 
         self.route()
         
-//        self.server.start()
         self.server.start(9900)
     }
     
@@ -34,7 +33,6 @@ class TPServer:NSObject {
                     print(error)
                     callback(HttpResponse.OK(HttpResponseBody.HTML(error!)))
                 } else {
-//                    response.headers["Access-Control-Allow-Origin"] = "*"
                     callback(HttpResponse.Custom(HttpResponseBody.RAW(data), [("Access-Control-Allow-Origin","*"), ("Content-Type","application/json")], 200))
                 }
             }
@@ -102,7 +100,7 @@ class TPServer:NSObject {
                         print(error)
                         callback("", error!.localizedDescription)
                     }
-                    callback( NSString(data: data!, encoding: NSUTF8StringEncoding)! as String, nil)
+                    callback(NSString(data: data!, encoding: NSUTF8StringEncoding)! as String , nil)
             })
             
             task!.resume()

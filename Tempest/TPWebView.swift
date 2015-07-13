@@ -16,7 +16,9 @@ class TPWebView: NSObject, WKScriptMessageHandler, WKNavigationDelegate{
     var width:CGFloat = 200
     var height:CGFloat = 400
     var cornerRadius:CGFloat = 5.0
-
+    var isReady = false
+    var scriptList = [String]()
+    
     override init(){
         let windowRect: NSRect = (NSScreen.mainScreen()!).frame
         let frameRect:NSRect = NSMakeRect(
@@ -103,6 +105,13 @@ class TPWebView: NSObject, WKScriptMessageHandler, WKNavigationDelegate{
     func webView(webView: WKWebView, didFinishNavigation navigation: WKNavigation!) {
         print("webView Loaded!!!")
         window.invalidateShadow()
+        self.isReady = true
+        for string in self.scriptList {
+            webView.evaluateJavaScript(string as String, completionHandler: {
+                (data, error) in
+                NSLog("runing js in Naive: %@ -----", string)
+            })
+        }
         webView.evaluateJavaScript("console.log(\"WebKit Loaded And Called From Swift!\")", completionHandler: { (data, error) in
             if error != nil {
                 print(error)
@@ -110,7 +119,6 @@ class TPWebView: NSObject, WKScriptMessageHandler, WKNavigationDelegate{
             if data != nil{
                 print(data)
             }
-            
         })
     }
     
@@ -128,9 +136,14 @@ class TPWebView: NSObject, WKScriptMessageHandler, WKNavigationDelegate{
     }
     func run(string:String){
         let webView = window.contentView as! WKWebView
-         webView.evaluateJavaScript(string as String, completionHandler: {
-            (data, error) in
-            NSLog("runing js in Naive: %@ -----", string)
-        })
+        if self.isReady {
+            webView.evaluateJavaScript(string as String, completionHandler: {
+                (data, error) in
+                NSLog("runing js in Naive: %@ -----", string)
+            })
+        }else {
+            print("Save for excuse later.")
+            self.scriptList.append(string)
+        }
     }
 }

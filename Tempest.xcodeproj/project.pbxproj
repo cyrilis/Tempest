@@ -55,7 +55,6 @@
 
 /* Begin PBXFileReference section */
 		F146D99D1AE8DA9B00FE861F /* TPWebView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TPWebView.swift; sourceTree = "<group>"; };
-		F146D9A11AEA252700FE861F /* Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
 		F146D9A21AEA48C300FE861F /* TPApplication.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TPApplication.swift; sourceTree = "<group>"; };
 		F146D9A41AEE5E3400FE861F /* Tempest-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Tempest-Bridging-Header.h"; sourceTree = "<group>"; };
 		F146D9A81AEE8A0200FE861F /* SPMediaKeyTap.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SPMediaKeyTap.h; sourceTree = "<group>"; };
@@ -162,10 +161,9 @@
 				F1A8A49C1B1A28DB00FDB3E8 /* TPPanel.swift */,
 				F1A137B41AE3A087004E26B1 /* TPWindow.swift */,
 				F146D99D1AE8DA9B00FE861F /* TPWebView.swift */,
-				F146D9A11AEA252700FE861F /* Bridging-Header.h */,
+				F1F1A7CC1B53B36E00139F0C /* TPServer.swift */,
 				F146D9A21AEA48C300FE861F /* TPApplication.swift */,
 				F146D9A41AEE5E3400FE861F /* Tempest-Bridging-Header.h */,
-				F1F1A7CC1B53B36E00139F0C /* TPServer.swift */,
 			);
 			path = Tempest;
 			sourceTree = "<group>";
