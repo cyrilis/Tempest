@@ -116,7 +116,7 @@
       console.log("Getting User Data");
       return $.get(USER_API_URL + this.user_id + "?apikey=0776da5f62da51f816648f1e288ef5e8").done(function(result) {
         console.log("Got user info.");
-        window.webkit.messageHandlers.panelDo.postMessage("$(\".user-name\").text(\""+result.name.split('"').join('\\"')+"\");$(\".user-desc\").text(\""+(result.signature || result.desc).split('"').join('\\"')+ "\");$(\".avatar\").css(\"background-image\", \"url(\'" + result.large_avatar.split('"').join('\\"') + "\')\");$(\".sidebar .loading\").addClass(\"hide\");$(\".sidebar .user\").removeClass(\"hide\");");
+        window.webkit.messageHandlers.panelDo.postMessage("$(\".user-name\").text(\""+result.name.split('"').join('\\"')+"\");$(\".user-desc\").text(\""+(result.signature || result.desc).split('"').join('\\"')+ "\");$(\".avatar\").css(\"background-image\", \"url(\'" + result.large_avatar.split('"').join('\\"') + "\')\").attr(\"data-id\", \""+ (result.id || result.user_id) +"\");$(\".sidebar .loading\").addClass(\"hide\");$(\".sidebar .user\").removeClass(\"hide\");");
 //        $(".user-name").text(result.name);
 //        $(".user-desc").text(result.signature || result.desc);
 //        $(".avatar").css("background-image", "url(" + result.large_avatar + ")");
@@ -437,10 +437,10 @@
   });
 
   // Call webkit messageHandler toggle draggable window.
-  $(".player-progress, .player-volume").on("mousedown", function(){
+  $(".player-progress, .player-volume, .close").on("mousedown", function(){
      window.webkit.messageHandlers.toggleDrag.postMessage("true");
   })
-  $(".player-progress, .player-volume").on("mouseup", function(){
+  $(".player-progress, .player-volume, .close").on("mouseup", function(){
      window.webkit.messageHandlers.toggleDrag.postMessage("false");
   })
 
@@ -474,6 +474,11 @@
       window.webkit.messageHandlers.panelDo.postMessage("$(\".channels\").removeClass(\"hide\");$(\".sidebar .loading\").addClass(\"hide\");")
     }
   }
+ 
+ $("body").on("contextmenu", function (evt) {
+    evt.preventDefault();
+ });
+ 
  window.logout = function(){
     fm.logout();
  }

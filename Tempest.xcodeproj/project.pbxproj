@@ -11,19 +11,23 @@
 		F146D9A31AEA48C300FE861F /* TPApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = F146D9A21AEA48C300FE861F /* TPApplication.swift */; };
 		F146D9AA1AEE8A0B00FE861F /* SPMediaKeyTap.m in Sources */ = {isa = PBXBuildFile; fileRef = F146D9A91AEE8A0B00FE861F /* SPMediaKeyTap.m */; };
 		F146D9AD1AEE8A1900FE861F /* NSObject+SPInvocationGrabbing.m in Sources */ = {isa = PBXBuildFile; fileRef = F146D9AC1AEE8A1900FE861F /* NSObject+SPInvocationGrabbing.m */; };
+		F1736A3C1B2DC48B00A53A43 /* DemoServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1736A321B2DC48B00A53A43 /* DemoServer.swift */; };
+		F1736A3D1B2DC48B00A53A43 /* HttpHandlers.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1736A331B2DC48B00A53A43 /* HttpHandlers.swift */; };
+		F1736A3E1B2DC48B00A53A43 /* HttpParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1736A341B2DC48B00A53A43 /* HttpParser.swift */; };
+		F1736A3F1B2DC48B00A53A43 /* HttpRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1736A351B2DC48B00A53A43 /* HttpRequest.swift */; };
+		F1736A401B2DC48B00A53A43 /* HttpResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1736A361B2DC48B00A53A43 /* HttpResponse.swift */; };
+		F1736A411B2DC48B00A53A43 /* HttpServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1736A371B2DC48B00A53A43 /* HttpServer.swift */; };
+		F1736A421B2DC48B00A53A43 /* Socket.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1736A381B2DC48B00A53A43 /* Socket.swift */; };
 		F1A136751AE2A542004E26B1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1A136741AE2A542004E26B1 /* AppDelegate.swift */; };
 		F1A136771AE2A542004E26B1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1A136761AE2A542004E26B1 /* ViewController.swift */; };
 		F1A136791AE2A542004E26B1 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F1A136781AE2A542004E26B1 /* Images.xcassets */; };
 		F1A136881AE2A542004E26B1 /* TempestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1A136871AE2A542004E26B1 /* TempestTests.swift */; };
 		F1A137B31AE2ADB8004E26B1 /* DoubanFM in Resources */ = {isa = PBXBuildFile; fileRef = F1A137B21AE2ADB8004E26B1 /* DoubanFM */; };
 		F1A137B51AE3A087004E26B1 /* TPWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1A137B41AE3A087004E26B1 /* TPWindow.swift */; };
-		F1A8A4961B1949B000FDB3E8 /* TPProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1A8A4951B1949B000FDB3E8 /* TPProxy.swift */; };
-		F1A8A4981B19771300FDB3E8 /* Taylor.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1A8A4971B19771300FDB3E8 /* Taylor.framework */; };
-		F1A8A4991B19774400FDB3E8 /* Taylor.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1A8A4971B19771300FDB3E8 /* Taylor.framework */; };
-		F1A8A49A1B19774400FDB3E8 /* Taylor.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F1A8A4971B19771300FDB3E8 /* Taylor.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		F1A8A49D1B1A28DB00FDB3E8 /* TPPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1A8A49C1B1A28DB00FDB3E8 /* TPPanel.swift */; };
 		F1A8A49F1B1A38C300FDB3E8 /* TPPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1A8A49E1B1A38C300FDB3E8 /* TPPlayer.swift */; };
 		F1A8A4A01B1ACE8300FDB3E8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F1A1367A1AE2A542004E26B1 /* Main.storyboard */; };
+		F1F1A7CD1B53B36E00139F0C /* TPServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1F1A7CC1B53B36E00139F0C /* TPServer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,7 +47,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				F1A8A49A1B19774400FDB3E8 /* Taylor.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -59,6 +62,13 @@
 		F146D9A91AEE8A0B00FE861F /* SPMediaKeyTap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPMediaKeyTap.m; sourceTree = "<group>"; };
 		F146D9AB1AEE8A1400FE861F /* NSObject+SPInvocationGrabbing.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+SPInvocationGrabbing.h"; sourceTree = "<group>"; };
 		F146D9AC1AEE8A1900FE861F /* NSObject+SPInvocationGrabbing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+SPInvocationGrabbing.m"; sourceTree = "<group>"; };
+		F1736A321B2DC48B00A53A43 /* DemoServer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DemoServer.swift; sourceTree = "<group>"; };
+		F1736A331B2DC48B00A53A43 /* HttpHandlers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpHandlers.swift; sourceTree = "<group>"; };
+		F1736A341B2DC48B00A53A43 /* HttpParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpParser.swift; sourceTree = "<group>"; };
+		F1736A351B2DC48B00A53A43 /* HttpRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpRequest.swift; sourceTree = "<group>"; };
+		F1736A361B2DC48B00A53A43 /* HttpResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpResponse.swift; sourceTree = "<group>"; };
+		F1736A371B2DC48B00A53A43 /* HttpServer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpServer.swift; sourceTree = "<group>"; };
+		F1736A381B2DC48B00A53A43 /* Socket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Socket.swift; sourceTree = "<group>"; };
 		F1A1366F1AE2A542004E26B1 /* Tempest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tempest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F1A136731AE2A542004E26B1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F1A136741AE2A542004E26B1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -70,10 +80,9 @@
 		F1A136871AE2A542004E26B1 /* TempestTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempestTests.swift; sourceTree = "<group>"; };
 		F1A137B21AE2ADB8004E26B1 /* DoubanFM */ = {isa = PBXFileReference; lastKnownFileType = folder; path = DoubanFM; sourceTree = "<group>"; };
 		F1A137B41AE3A087004E26B1 /* TPWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TPWindow.swift; sourceTree = "<group>"; };
-		F1A8A4951B1949B000FDB3E8 /* TPProxy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TPProxy.swift; sourceTree = "<group>"; };
-		F1A8A4971B19771300FDB3E8 /* Taylor.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Taylor.framework; sourceTree = "<group>"; };
 		F1A8A49C1B1A28DB00FDB3E8 /* TPPanel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TPPanel.swift; sourceTree = "<group>"; };
 		F1A8A49E1B1A38C300FDB3E8 /* TPPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TPPlayer.swift; sourceTree = "<group>"; };
+		F1F1A7CC1B53B36E00139F0C /* TPServer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TPServer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,8 +90,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F1A8A4981B19771300FDB3E8 /* Taylor.framework in Frameworks */,
-				F1A8A4991B19774400FDB3E8 /* Taylor.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -99,9 +106,23 @@
 		C3DFA3305613B5BDEB5E6EB0 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				F1A8A4971B19771300FDB3E8 /* Taylor.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		F1736A2B1B2DC48B00A53A43 /* Server */ = {
+			isa = PBXGroup;
+			children = (
+				F1736A321B2DC48B00A53A43 /* DemoServer.swift */,
+				F1736A331B2DC48B00A53A43 /* HttpHandlers.swift */,
+				F1736A341B2DC48B00A53A43 /* HttpParser.swift */,
+				F1736A351B2DC48B00A53A43 /* HttpRequest.swift */,
+				F1736A361B2DC48B00A53A43 /* HttpResponse.swift */,
+				F1736A371B2DC48B00A53A43 /* HttpServer.swift */,
+				F1736A381B2DC48B00A53A43 /* Socket.swift */,
+			);
+			name = Server;
+			path = Common;
 			sourceTree = "<group>";
 		};
 		F1A136661AE2A542004E26B1 = {
@@ -126,6 +147,7 @@
 		F1A136711AE2A542004E26B1 /* Tempest */ = {
 			isa = PBXGroup;
 			children = (
+				F1736A2B1B2DC48B00A53A43 /* Server */,
 				F146D9A81AEE8A0200FE861F /* SPMediaKeyTap.h */,
 				F146D9A91AEE8A0B00FE861F /* SPMediaKeyTap.m */,
 				F146D9AB1AEE8A1400FE861F /* NSObject+SPInvocationGrabbing.h */,
@@ -143,7 +165,7 @@
 				F146D9A11AEA252700FE861F /* Bridging-Header.h */,
 				F146D9A21AEA48C300FE861F /* TPApplication.swift */,
 				F146D9A41AEE5E3400FE861F /* Tempest-Bridging-Header.h */,
-				F1A8A4951B1949B000FDB3E8 /* TPProxy.swift */,
+				F1F1A7CC1B53B36E00139F0C /* TPServer.swift */,
 			);
 			path = Tempest;
 			sourceTree = "<group>";
@@ -218,7 +240,8 @@
 		F1A136671AE2A542004E26B1 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0630;
+				LastSwiftUpdateCheck = 0700;
+				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = Cyrilis.com;
 				TargetAttributes = {
 					F1A1366E1AE2A542004E26B1 = {
@@ -278,12 +301,19 @@
 				F1A136771AE2A542004E26B1 /* ViewController.swift in Sources */,
 				F1A8A49D1B1A28DB00FDB3E8 /* TPPanel.swift in Sources */,
 				F146D99E1AE8DA9B00FE861F /* TPWebView.swift in Sources */,
+				F1736A401B2DC48B00A53A43 /* HttpResponse.swift in Sources */,
 				F146D9AD1AEE8A1900FE861F /* NSObject+SPInvocationGrabbing.m in Sources */,
+				F1736A3E1B2DC48B00A53A43 /* HttpParser.swift in Sources */,
+				F1736A411B2DC48B00A53A43 /* HttpServer.swift in Sources */,
 				F146D9AA1AEE8A0B00FE861F /* SPMediaKeyTap.m in Sources */,
+				F1736A421B2DC48B00A53A43 /* Socket.swift in Sources */,
+				F1736A3C1B2DC48B00A53A43 /* DemoServer.swift in Sources */,
 				F1A8A49F1B1A38C300FDB3E8 /* TPPlayer.swift in Sources */,
+				F1736A3D1B2DC48B00A53A43 /* HttpHandlers.swift in Sources */,
 				F1A137B51AE3A087004E26B1 /* TPWindow.swift in Sources */,
+				F1F1A7CD1B53B36E00139F0C /* TPServer.swift in Sources */,
 				F1A136751AE2A542004E26B1 /* AppDelegate.swift in Sources */,
-				F1A8A4961B1949B000FDB3E8 /* TPProxy.swift in Sources */,
+				F1736A3F1B2DC48B00A53A43 /* HttpRequest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -338,6 +368,7 @@
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -413,6 +444,7 @@
 				);
 				INFOPLIST_FILE = Tempest/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.cyrilis.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Tempest/Tempest-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -431,6 +463,7 @@
 				);
 				INFOPLIST_FILE = Tempest/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.cyrilis.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Tempest/Tempest-Bridging-Header.h";
 			};
@@ -451,6 +484,7 @@
 				);
 				INFOPLIST_FILE = TempestTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.cyrilis.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Tempest.app/Contents/MacOS/Tempest";
 			};
@@ -467,6 +501,7 @@
 				);
 				INFOPLIST_FILE = TempestTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.cyrilis.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Tempest.app/Contents/MacOS/Tempest";
 			};

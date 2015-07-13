@@ -17,15 +17,15 @@ class TPPanelWindow:TPWindow{
 class TPPanel: TPWebView {
 //    override var window: TPWindow
     override init(){
-        var windowRect: NSRect = (NSScreen.mainScreen()!).frame
-        var frameRect:NSRect = NSMakeRect(
+        let windowRect: NSRect = (NSScreen.mainScreen()!).frame
+        let frameRect:NSRect = NSMakeRect(
             (NSWidth(windowRect) - 210)/2,
             (NSHeight(windowRect) - 410)/2,
             210, 410
         )
         super.init()
-        var viewRect:NSRect = NSMakeRect(0,0,NSWidth(frameRect), NSHeight(frameRect));
-        self.window = TPPanelWindow(contentRect: frameRect, styleMask: NSBorderlessWindowMask | NSClosableWindowMask | NSMiniaturizableWindowMask | NSTexturedBackgroundWindowMask, backing: NSBackingStoreType.Buffered, defer: false, screen: NSScreen.mainScreen())
+        let viewRect:NSRect = NSMakeRect(0,0,NSWidth(frameRect), NSHeight(frameRect));
+        self.window = TPPanelWindow(contentRect: frameRect, styleMask: NSBorderlessWindowMask | NSClosableWindowMask | NSMiniaturizableWindowMask | NSTexturedBackgroundWindowMask, backing: NSBackingStoreType.Buffered, `defer`: false, screen: NSScreen.mainScreen())
 
         self.window.setFrame(self.resetFrame(frameRect), display: true)
         self.window.titleVisibility = NSWindowTitleVisibility.Hidden
@@ -38,21 +38,22 @@ class TPPanel: TPWebView {
     
     override func setupContentController (contentController:WKUserContentController) -> WKUserContentController{
         contentController.addScriptMessageHandler(self, name: "playerRun")
+        contentController.addScriptMessageHandler(self, name: "openLink")
         return contentController
     }
     
     
     override func loadRequest (webView:WKWebView){
-        var newWebUrl = NSURL(fileURLWithPath: "\(NSBundle.mainBundle().resourcePath!)/DoubanFM/panel.html")
-        var requestObj:NSURLRequest = NSURLRequest(URL:newWebUrl!)
+        let newWebUrl = NSURL(fileURLWithPath: "\(NSBundle.mainBundle().resourcePath!)/DoubanFM/panel.html")
+        let requestObj:NSURLRequest = NSURLRequest(URL:newWebUrl)
         webView.loadRequest(requestObj)
     }
     
     override func resetFrame(frameRect: NSRect) -> NSRect {
         self.width = 210
         self.height = 410
-        var windowRect: NSRect = (NSScreen.mainScreen()!).frame
-        var newFrameRect:NSRect = NSMakeRect(
+        let windowRect: NSRect = (NSScreen.mainScreen()!).frame
+        let newFrameRect:NSRect = NSMakeRect(
             windowRect.origin.x + (NSWidth(windowRect) - width)/2 + 270,
             windowRect.origin.y + (NSHeight(windowRect) - height)/2,
             self.width, self.height
@@ -62,10 +63,18 @@ class TPPanel: TPWebView {
     }
     
     override func userContentController(userContentController: WKUserContentController,didReceiveScriptMessage message: WKScriptMessage){
-        println(message.name)
+        print(message.name)
         if(message.name == "playerRun") {
             if let player = self.window.parentWebView {
                 player.run(message.body as! String)
+            }
+        }else if( message.name == "openLink"){
+            if let userUrl = NSURL(string: message.body as! String) {
+                if NSWorkspace.sharedWorkspace().openURL(userUrl) {
+                    print("url successfully opened")
+                } else{
+                    print("url failed to open. \(userUrl)")
+                }
             }
         }
     }

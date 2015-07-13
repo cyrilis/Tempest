@@ -131,6 +131,16 @@
           $("button.button.logout").click(function(){
               window.webkit.messageHandlers.playerRun.postMessage("logout()");
           })
+          
+          $(".avatar").click(function(){
+              var userId = $(".avatar").data("id");
+              if(!userId){return false}
+              window.webkit.messageHandlers.openLink.postMessage("http://www.douban.com/people/" + userId + "/");
+          })
+          
+          $("body").on("contextmenu", function (evt) {
+              //evt.preventDefault();
+          });
 
         </script>
     </body>

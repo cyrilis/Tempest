@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>5FF119A3-A0B5-444F-B380-7DEDC21EF3A9</string>
+	<key>IDESourceControlProjectName</key>
+	<string>Tempest</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>5987EF970E3CB7822B77603D89343B5547CA9A40</key>
+		<string>github.com:cyrilis/Tempest.git</string>
+		<key>9E3FAE98F1A3E6A168C5AF083F7289DE16B258C9</key>
+		<string>github.com:cyrilis/Douban-FM-Express.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>Tempest.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>5987EF970E3CB7822B77603D89343B5547CA9A40</key>
+		<string>../..</string>
+		<key>9E3FAE98F1A3E6A168C5AF083F7289DE16B258C9</key>
+		<string>../..Tempest/DoubanFM/</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>github.com:cyrilis/Tempest.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>5987EF970E3CB7822B77603D89343B5547CA9A40</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>9E3FAE98F1A3E6A168C5AF083F7289DE16B258C9</string>
+			<key>IDESourceControlWCCName</key>
+			<string>DoubanFM</string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>5987EF970E3CB7822B77603D89343B5547CA9A40</string>
+			<key>IDESourceControlWCCName</key>
+			<string>Tempest</string>
+		</dict>
+	</array>
+</dict>
+</plist>
