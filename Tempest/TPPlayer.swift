@@ -26,12 +26,15 @@ class TPPlayer: TPWebView {
     override func afterInit() {
         let panel = TPPanel()
         self.window.childWebView = panel
+        self.window.contentView.subviews.first!.layer!.cornerRadius = 5.0
+        panel.window.contentView.subviews.first!.layer!.cornerRadius = 5.0
         panel.window.parentWebView = self
         self.window.addChildWindow(panel.window, ordered: NSWindowOrderingMode.Below)
         // close panel when TPPlayer main window is closed.
         NSNotificationCenter.defaultCenter().addObserver(panel.window, selector: "close", name: NSWindowWillCloseNotification, object: self.window)
         
     }
+
     override func resetFrame(frameRect: NSRect) -> NSRect {
         self.width = 350
         self.height = 450

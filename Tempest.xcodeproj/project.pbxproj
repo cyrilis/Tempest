@@ -40,19 +40,6 @@
 		};
 /* End PBXContainerItemProxy section */
 
-/* Begin PBXCopyFilesBuildPhase section */
-		F1A8A49B1B19774400FDB3E8 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
-
 /* Begin PBXFileReference section */
 		F146D99D1AE8DA9B00FE861F /* TPWebView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TPWebView.swift; sourceTree = "<group>"; };
 		F146D9A21AEA48C300FE861F /* TPApplication.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TPApplication.swift; sourceTree = "<group>"; };
@@ -81,6 +68,7 @@
 		F1A137B41AE3A087004E26B1 /* TPWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TPWindow.swift; sourceTree = "<group>"; };
 		F1A8A49C1B1A28DB00FDB3E8 /* TPPanel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TPPanel.swift; sourceTree = "<group>"; };
 		F1A8A49E1B1A38C300FDB3E8 /* TPPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TPPlayer.swift; sourceTree = "<group>"; };
+		F1EB1BCB1B5634940010C0D1 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		F1F1A7CC1B53B36E00139F0C /* TPServer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TPServer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -105,6 +93,7 @@
 		C3DFA3305613B5BDEB5E6EB0 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F1EB1BCB1B5634940010C0D1 /* WebKit.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -203,7 +192,6 @@
 				F1A1366B1AE2A542004E26B1 /* Sources */,
 				F1A1366C1AE2A542004E26B1 /* Frameworks */,
 				F1A1366D1AE2A542004E26B1 /* Resources */,
-				F1A8A49B1B19774400FDB3E8 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);

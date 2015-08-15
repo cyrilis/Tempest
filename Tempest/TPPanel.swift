@@ -36,6 +36,9 @@ class TPPanel: TPWebView {
         self.afterInit()
     }
     
+    override func afterInit() {
+        self.window.contentView.subviews.first!.layer?.cornerRadius = 5.0 as CGFloat
+    }
     override func setupContentController (contentController:WKUserContentController) -> WKUserContentController{
         contentController.addScriptMessageHandler(self, name: "playerRun")
         contentController.addScriptMessageHandler(self, name: "openLink")

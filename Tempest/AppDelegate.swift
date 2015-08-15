@@ -22,20 +22,16 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func startServer(){
         _ = TPServer()
     }
-
+    
     func applicationDidFinishLaunching(aNotification: NSNotification) {
-        let thread = NSThread(target:self, selector: "startServer", object: nil)
-        thread.start()
-//        startServer()
-        player = initPlayer();
+        self.startServer()
+        player = self.initPlayer();
         player.window.makeKeyAndOrderFront(self)
-
         mediaTap = SPMediaKeyTap(delegate: self)
         mediaTap.startWatchingMediaKeys()
     }
 
     func applicationWillTerminate(aNotification: NSNotification) {
-        // Insert code here to tear down your application
         if mediaTap != nil {
             mediaTap.stopWatchingMediaKeys()
         }

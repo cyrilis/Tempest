@@ -30,7 +30,7 @@ class TPServer:NSObject {
             self.HTTPGet(urlString as String){
                 (data: String, error: String?) -> Void in
                 if error != nil {
-                    print(error)
+                    NSLog("\(error)")
                     callback(HttpResponse.OK(HttpResponseBody.HTML(error!)))
                 } else {
                     callback(HttpResponse.Custom(HttpResponseBody.RAW(data), [("Access-Control-Allow-Origin","*"), ("Content-Type","application/json")], 200))
@@ -45,6 +45,7 @@ class TPServer:NSObject {
                 (data: String, error: String?) -> Void in
                 if error != nil {
                     print(error)
+                    NSLog("\(error)")
                     callback(HttpResponse.OK(HttpResponseBody.HTML(error!)))
                 } else {
                     callback(HttpResponse.Custom(HttpResponseBody.RAW(data), [("Access-Control-Allow-Origin","*"), ("Content-Type","application/json")], 200))
@@ -60,6 +61,7 @@ class TPServer:NSObject {
                 (data: String, error: String?) -> Void in
                 if error != nil {
                     print(error)
+                    NSLog("\(error)")
                     callback(HttpResponse.OK(HttpResponseBody.HTML(error!)))
                 } else {
                     callback(HttpResponse.Custom(HttpResponseBody.RAW(data), [("Access-Control-Allow-Origin","*"), ("Content-Type","application/json")], 200))
@@ -75,6 +77,7 @@ class TPServer:NSObject {
                 (data: String, error: String?) -> Void in
                 if error != nil {
                     print(error)
+                    NSLog("\(error)")
                     callback(HttpResponse.OK(HttpResponseBody.HTML(error!)))
                 } else {
                     callback(HttpResponse.Custom(HttpResponseBody.RAW(data), [("Access-Control-Allow-Origin","*"), ("Content-Type","application/json")], 200))
@@ -98,6 +101,7 @@ class TPServer:NSObject {
                     data, response, error in
                     if error != nil {
                         print(error)
+                        NSLog("\(error)")
                         callback("", error!.localizedDescription)
                     }
                     callback(NSString(data: data!, encoding: NSUTF8StringEncoding)! as String , nil)

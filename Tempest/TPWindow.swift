@@ -50,6 +50,9 @@ class TPWindow: NSWindow {
     override func mouseUp(theEvent: NSEvent) {
         // println("ReRender Window Shadow. 👌")
         self.invalidateShadow()
+        if (self.childWebView != nil) {
+            self.childWebView!.window.invalidateShadow()
+        }
     }
     
     override func mouseDragged(theEvent: NSEvent) {
